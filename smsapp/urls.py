@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import SmsCreateView
+from .views import add_and_save
 
 urlpatterns = [
-    path('', SmsCreateView.as_view(), name='smsform'),
+    path('', add_and_save, name='smsform'),
 ]

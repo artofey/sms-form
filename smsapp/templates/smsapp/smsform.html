@@ -1,8 +1,8 @@
 {% extends 'smsapp/layout/basic.html' %}
 
-{% block title %}Форма СМС рассылки{% endblock %}
+{% block title %}Форма СМС-рассылки{% endblock %}
 {% block content %}
-    <h2>Форма СМС рассылки</h2>
+    <h2>Форма СМС-рассылки</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

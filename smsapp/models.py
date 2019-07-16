@@ -39,3 +39,4 @@ class Message(models.Model):
     text = models.TextField(max_length=60, null=False, verbose_name='Текст')
     system = models.ForeignKey('System', on_delete=models.DO_NOTHING)
     sended_time = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Отправлено')
+    status = models.TextField(max_length=20, default='unknown', verbose_name='Статус')
