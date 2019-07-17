@@ -25,7 +25,9 @@ SECRET_KEY = 'cezrdp4b!bpkzbujn&4a3+b-l!%-()!5=#t_%od^d(b%!u42&j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.lukoil.com', '.lukoil.net']
+ALLOWED_HOSTS = ['.lukoil.com',
+                 '.lukoil.net',
+                 '127.0.0.1']
 
 
 # Application definition

@@ -2,7 +2,7 @@
 
 {% block title %}Форма СМС-рассылки{% endblock %}
 {% block content %}
-    <h2>Форма СМС-рассылки</h2>
+    <h3>Форма СМС-рассылки</h3>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

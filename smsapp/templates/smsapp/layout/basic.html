@@ -1,24 +1,28 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Главная{% endblock %} - Портал СМС</title>
     <link rel="stylesheet" type="text/css" href="{% static 'smsapp\css\bootstrap.css' %}">
 </head>
 <body>
-    <header>
-        <h1>Рассылка СМС</h1>
-    </header>
-    <nav aria-label="breadcrumb">
-        <a href="{% url 'smsform' %}">Главная</a>
-        <br>
-    </nav>
-    <section>
-        <div class="container-fluid">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </section>
+    <div class="container">
+        <header>
+            <h2>Рассылка СМС</h2>
+        </header>
+        <nav aria-label="breadcrumb">
+            <a href="{% url 'smsform' %}">Главная</a>
+            <a href="/admin/">Админка</a>
+            <br>
+        </nav>
+        <section>
+            <div class="container-fluid">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </section>
+    </div>
 </body>
 </html>
