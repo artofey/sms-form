@@ -36,7 +36,7 @@ class Message(models.Model):
     '''
     Таблица для сохранения результатов выполненной рассылки.
     '''
-    text = models.TextField(max_length=120, null=False, verbose_name='Текст')
+    text = models.TextField(max_length=200, null=False, verbose_name='Текст')
     system = models.ForeignKey('System', on_delete=models.DO_NOTHING)
     sended_time = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name='Отправлено')
     status = models.TextField(max_length=20, default='unknown', verbose_name='Статус')
