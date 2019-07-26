@@ -13,8 +13,11 @@
             <h2>Рассылка СМС</h2>
         </header>
         <nav aria-label="breadcrumb">
-            <a href="{% url 'smsform' %}">Главная</a>
-            <a href="/admin/">Админка</a>
+            <a href="{% url 'smsform' %}">Главная </a>
+            {% if user.is_authenticated %}
+            <a href="/admin/">Админка </a>
+            <a href="{% url 'logout' %}">Выход ({{ user.username }}) </a>
+            {% endif %}
             <br>
         </nav>
         <section>

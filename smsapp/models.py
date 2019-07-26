@@ -3,7 +3,7 @@ from django.db import models
 
 class Contact(models.Model):
     name = models.CharField(max_length=100, db_index=True, verbose_name='ФИО')
-    phone = models.CharField(max_length=11, null=False, verbose_name='Номер телефона')
+    phone = models.CharField(max_length=11, null=False, unique=True, verbose_name='Номер телефона')
     systems = models.ManyToManyField('System', verbose_name='Системы', blank=True)
 
     class Meta:

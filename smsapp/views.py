@@ -1,7 +1,5 @@
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy, reverse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, reverse
+from django.contrib.auth.decorators import login_required
 
 from .forms import MessageForm
 from .models import Message, System, Contact
@@ -9,6 +7,7 @@ from .models import Message, System, Contact
 from .sms_client import send_sms_and_get_status
 
 
+@login_required
 def add_and_save(request):
     if request.method == 'POST':
         smsf = MessageForm(request.POST)
