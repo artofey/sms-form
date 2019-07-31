@@ -23,5 +23,5 @@ urlpatterns = [
     path('sms/', include('smsapp.urls')),
     path('', RedirectView.as_view(url='sms/')),
     path('accounts/login/', LoginView.as_view(), name='login'),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/logout/', LogoutView.as_view(next_page='/sms'), name='logout'),
 ]

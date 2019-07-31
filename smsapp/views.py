@@ -1,8 +1,8 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from .forms import MessageForm
-from .models import Message, System, Contact
+from .models import System
 
 from .sms_client import send_sms_and_get_status
 
@@ -19,11 +19,6 @@ def add_and_save(request):
             sys = System.objects.get(pk=current_system_id)
             # получаю список телефонов по выбранной системе
             current_phone_list = [cont.phone for cont in sys.contact_set.all()]
-            # если выбрана не тестовая группа, то список телефонов дополняется телефонами из группы Default
-            # if sys.name != 'TEST':
-            #     sys_default = System.objects.get(name='Default')
-            #     default_phone_list = [cont.phone for cont in sys_default.contact_set.all()]
-            #     current_phone_list += default_phone_list
             new_sms_form.status = send_sms_and_get_status(current_phone_list, current_text)
             new_sms_form.save()
             context = {'status': new_sms_form.status}
