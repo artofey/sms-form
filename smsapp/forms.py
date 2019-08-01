@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, CheckboxSelectMultiple
 
 from .models import Message
 
@@ -6,5 +6,5 @@ from .models import Message
 class MessageForm(ModelForm):
     class Meta:
         model = Message
-        fields = ('text', 'system')
-        labels = {'system': 'Система'}
+        fields = ('text', 'systems')
+        widgets = {'systems': CheckboxSelectMultiple}

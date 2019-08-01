@@ -5,9 +5,12 @@ from .models import Contact, System, Message
 
 
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('system', 'sended_time', 'status')
-    list_display_links = ('system',)
-    search_fields = ('system', 'text')
+    list_display = ('sended_time', 'status')
+    list_display_links = ('sended_time',)
+    search_fields = ('systems', 'text')
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
 
 
 class ContactAdmin(admin.ModelAdmin):

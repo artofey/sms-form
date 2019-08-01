@@ -9,18 +9,25 @@ from .sms_client import send_sms_and_get_status
 
 @login_required
 def add_and_save(request):
+    """
+    обработчик формы для отправки СМС
+    :param request:
+    :return:
+    """
     if request.method == 'POST':
         smsf = MessageForm(request.POST)
         if smsf.is_valid():
             new_sms_form = smsf.save(commit=False)
-            current_system_id = smsf.cleaned_data['system'].id
-            current_text = smsf.cleaned_data['text']
-            # получаю систему выбранную в форме
-            sys = System.objects.get(pk=current_system_id)
-            # получаю список телефонов по выбранной системе
-            current_phone_list = [cont.phone for cont in sys.contact_set.all()]
-            new_sms_form.status = send_sms_and_get_status(current_phone_list, current_text)
+            current_systems = smsf.cleaned_data['systems']
+            text = smsf.cleaned_data['text']
+            phone_list = []
+            for system in current_systems:
+                current_system_id = system.pk
+                current_sys = System.objects.get(pk=current_system_id)
+                phone_list += [cont.phone for cont in current_sys.contact_set.all()]
+            new_sms_form.status = send_sms_and_get_status(list(set(phone_list)), text)
             new_sms_form.save()
+            smsf.save_m2m()
             context = {'status': new_sms_form.status}
             return render(request, 'smsapp/smsstatus.html', context)
         else:
